@@ -2,7 +2,7 @@
   description = "Kassa 2";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/4aa7aa0cf13946b7beb29844e02d0593489d5c7d"; # 26.11 before git-pages services issue
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
