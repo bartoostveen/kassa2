@@ -1,17 +1,8 @@
 {
   description = "Kassa 2";
 
-  nixConfig = {
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-  };
-
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/96b2cc2bba994a39c5b499cdb211bdfc5b6bbe82";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -44,20 +35,15 @@
       # for `nix flake check`
       checks.x86_64-linux.formatting = (treefmt-nix.lib.evalModule nixpkgs.outputs.legacyPackages.x86_64-linux ./base/treefmt.nix).config.build.check self;
 
-      # Host configs:
-      nixosConfigurations."kassa2" =
-        let
-          inherit (nixpkgs.lib) nixosSystem;
-        in
-        nixosSystem {
-          modules = [
-            ./hosts/kassa2.nix
-            ./hosts/hardware-configuration-kassa2.nix
-            { nixpkgs.overlays = [ inputs.bart-pkgs.overlays.default ]; }
-          ];
-          specialArgs = {
-            inherit inputs;
-          };
+      nixosConfigurations."kassa2" = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/kassa2.nix
+          ./hosts/hardware-configuration-kassa2.nix
+          { nixpkgs.overlays = [ inputs.bart-pkgs.overlays.default ]; }
+        ];
+        specialArgs = {
+          inherit inputs;
         };
+      };
     };
 }

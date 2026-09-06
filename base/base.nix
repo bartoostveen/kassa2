@@ -29,16 +29,6 @@
         "flakes"
         "pipe-operators"
       ];
-      extra-trusted-substituters = [
-        # keep-sorted start
-        "https://nix-community.cachix.org"
-        # keep-sorted end
-      ];
-      extra-trusted-public-keys = [
-        # keep-sorted start
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        # keep-sorted end
-      ];
     };
   };
 
@@ -75,8 +65,6 @@
       # keep-sorted end
     ];
   };
-
-  nix.settings.keep-failed = true;
 
   boot = {
     loader.grub = {
