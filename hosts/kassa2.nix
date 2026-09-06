@@ -9,7 +9,6 @@ in
   _module.args = { inherit host; };
   imports = [
     # keep-sorted start
-    ../AMD/patches.nix
     ../base/base.nix
     ../base/users.nix
     ../monitoring/zabbix-agent.nix
