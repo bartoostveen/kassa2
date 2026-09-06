@@ -33,7 +33,10 @@
         system:
         import nixpkgs {
           inherit system;
-          overlays = [ inputs.bart-pkgs.overlays.default ];
+          overlays = [
+            (_: _: { _bartPackages.prefix = "bart"; })
+            inputs.bart-pkgs.overlays.default
+          ];
         };
       systems = [ "x86_64-linux" ];
 
